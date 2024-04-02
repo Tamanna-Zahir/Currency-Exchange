@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<%- include("partials/head.ejs")%>
+<body>
+  <%- include("partials/nav.ejs")%>
+  
+  <header>
+  <h1>Currency Converter</h1>
+  </header>
+  <div class ="div-box">
+    <br>
+    <input type="number" name="amount">
+    <br>
+    <br>
+    <select name = "currency_From">
+      <option value="" disabled selected>Select Currency(From)</option>
+      <% for (const currency in currencyCode) { %>
+      <option><%= currencyCode[currency] %>  </option>
+      <% } %>
+      </select> 
+    <select name = "currency_To">
+      <option value="" disabled selected>Select Currency(To)</option>
+      <% for (const currency in currencyCode) { %>
+      <option><%= currencyCode[currency] %>  </option>
+      <% } %>
+    </select> 
+    <button  type="button" class="btn btn-secondary" onclick="convertCurrency()" >Convert</button>
+    <br> 
+    <p id="result"></p>
+  
+  <script>
+  async function convertCurrency() {
+    const amount = parseFloat(document.querySelector('input[name="amount"]').value);
+    const currency_From = document.querySelector('select[name="currency_From"]').value;
+    const currency_To = document.querySelector('select[name="currency_To"]').value;
+    const url = `https://v6.exchangerate-api.com/v6/2f37f7d40f9163a5c0ba1c85/latest/${currency_From}`;
+    
+    let response = await fetch(url);
+    let data = await response.json();
+    const convertedAmount = (data.conversion_rates[currency_To] * amount).toFixed(2);
+    const resultElement = document.getElementById('result');
+    resultElement.textContent = `${amount} ${currency_From} =  ${convertedAmount} ${currency_To}`;
+  }
+  </script>
+  </div>
+  <%- include("partials/footer.ejs")%>
+</body>
+</html>

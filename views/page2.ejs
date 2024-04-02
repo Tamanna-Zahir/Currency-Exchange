@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <%- include("partials/head.ejs")%>
+<body>
+  <%- include("partials/nav.ejs")%>
+
+  <header>
+    <h2>Currency Codes and Names </h1>
+  </header>
+  <div>
+    <ul>
+    <% for (const currencyCode in currencies) { %>
+    <li><%= currencyCode %> - <%= currencies[currencyCode] %></li>
+    <% } %>
+    </ul>
+  </div>
+  
+    <%- include("partials/footer.ejs")%>
+</body>
+</html>

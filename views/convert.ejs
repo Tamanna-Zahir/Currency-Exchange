@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<%- include("partials/head.ejs")%>
+<body>
+<%- include("partials/nav.ejs")%>
+
+<header>
+<h1>Currency Converter</h1>
+</header>
+<div>
+<input type="number" name="amount">
+<br>
+<br>
+<select name = "currency_To">
+<option value="" disabled selected>Select Currency</option>
+<% for (const currency in currencyCode) { %>
+<option><%= currencyCode[currency] %>  </option>
+ <% } %>
+</select> 
+<select name = "currency_From">
+<option value="" disabled selected>Select Currency</option>
+<% for (const currency in currencyCode) { %>
+<option><%= currencyCode[currency] %>  </option>
+<% } %>
+</select> 
+<button type="button" class="btn btn-secondary" >Convert</button>
+  <br> 
+</div>
+  <p > <%= currencySymbol%><%= convertedAmount%> </p>
+
+<%- include("partials/footer.ejs")%>
+</body>
+</html>

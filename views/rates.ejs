@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <%- include("partials/head.ejs")%>
+<body>
+  <%- include("partials/nav.ejs")%>
+
+  <header>
+    <h1>Currency Exchange Rates</h1>
+  </header>
+    <div >
+      <p> Last Update Time<%= lastUpdated %></p>
+      <p> <% selected_currency %> </p>
+        <ul>
+        <% for (const currency in conversion_rates) { %>
+          <li><%= currency %> : <%= currency_symbol %><%=conversion_rates[currency]  %></li>
+          <% } %>
+         </ul>
+    </div>
+    <script>
+      console.log("test")
+    </script>
+    <%- include("partials/footer.ejs")%>
+</body>
+</html>
